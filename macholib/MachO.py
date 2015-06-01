@@ -56,7 +56,7 @@ class MachO(object):
     #   id_cmd     - the index of my id command, or None
 
 
-    def __init__(self, filename):
+    def __init__(self, filename, stream=None):
 
         # supports the ObjectGraph protocol
         self.graphident = filename
@@ -65,8 +65,11 @@ class MachO(object):
         # initialized by load
         self.fat = None
         self.headers = []
-        with open(filename, 'rb') as fp:
-            self.load(fp)
+        if stream is None:
+            with open(filename, 'rb') as fp:
+                self.load(fp)
+        else:
+            self.load(stream)
 
     def __repr__(self):
         return "<MachO filename=%r>" % (self.filename,)
