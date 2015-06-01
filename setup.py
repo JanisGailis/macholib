@@ -28,9 +28,6 @@ setup(
     # All packages and sub-packages must be listed here
     packages=[
         'macholib',
-        'macholib.MachO',
-        'macholib.SymbolTable',
-        'macholib.mach_o',
         ],
 
     scripts=[]
