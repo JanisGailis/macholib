@@ -858,6 +858,8 @@ class test (Command):
 
 metadata = parse_setup_cfg()
 
+print metadata
+
 setup(
     cmdclass=dict(
         upload_docs=upload_docs,
