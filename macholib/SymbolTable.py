@@ -15,17 +15,17 @@ class SymbolTable(object):
         if header is None:
             header = macho.headers[0]
         self.macho_header = header
-        with openfile(macho.filename, 'rb') as fh:
-            self.symtab = header.getSymbolTableCommand()
-            self.dysymtab = header.getDynamicSymbolTableCommand()
-            try:
-                if self.symtab is not None:
-                    self.nlists = self.readSymbolTable(fh)
+        self.symtab = header.getSymbolTableCommand()
+        self.dysymtab = header.getDynamicSymbolTableCommand()
+        fh = openfile(macho.filename, 'rb')
+        try:
+            if self.symtab is not None:
+                self.nlists = self.readSymbolTable(fh)
 
-                if self.dysymtab is not None:
-                    self.readDynamicSymbolTable(fh)
-            except:
-                raise
+            if self.dysymtab is not None:
+                self.readDynamicSymbolTable(fh)
+        except:
+            raise
 
     def readSymbolTable(self, fh):
         cmd = self.symtab
