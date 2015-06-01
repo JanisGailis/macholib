@@ -25,6 +25,7 @@ import sys
 import time
 import tempfile
 import tarfile
+import pprint
 try:
     import urllib.request as urllib
 except ImportError:
@@ -858,7 +859,7 @@ class test (Command):
 
 metadata = parse_setup_cfg()
 
-print metadata
+pprint.pprint(metadata)
 
 setup(
     cmdclass=dict(
